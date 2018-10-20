@@ -11,9 +11,10 @@ You can also use your own favico or Hackathon logo/header.
 -->
 
 <html>
+
 <head>
   <meta charset='utf-8'>
-  <title>HackathonName Expo</title>
+  <title>hackUMBC Expo</title>
 
   <!-- Meta tags to eliminate caching. I don't totally get how these work, so you might not need all of them. cribbed from: http://stackoverflow.com/questions/1341089/using-meta-tags-to-turn-off-caching-in-all-browsers-->
   <meta http-equiv="cache-control" content="max-age=0">
@@ -36,10 +37,11 @@ You can also use your own favico or Hackathon logo/header.
   <div class="container">
     <div id="header">
       <h1>
-        <a href="DevpostURL" title="HackathonName Expo">
-          <img src="http://nealrs.github.io/devpost-follow-button/icon/devpost.svg" style="vertical-align:middle; width:60px;"> HackathonName
+        <a href="https://hackumbc-f18.devpost.com/" title="hackUMBC Expo">
+          <img src="http://nealrs.github.io/devpost-follow-button/icon/devpost.svg" style="vertical-align:middle; width:60px;">
+          hackUMBC
         </a>
-      <h1>
+        <h1>
     </div>
     <div id="fullTable"></div>
   </div>
@@ -76,31 +78,32 @@ You can also use your own favico or Hackathon logo/header.
     <p>Organizers, want your own slick expo / table number app?</p>
     <p>Email <a href="mailto:hackathons@devpost.com"> hackathons@devpost.com</a></p>
 
-    <a href="http://devpost.com"><img src="http://devpost0.assetspost.com/assets/shared/devpost_logo-646bdf6ac6663230947a952f8d354cad.svg" style="height: 30px;"></a>
+    <a href="http://devpost.com"><img src="http://devpost0.assetspost.com/assets/shared/devpost_logo-646bdf6ac6663230947a952f8d354cad.svg"
+        style="height: 30px;"></a>
 
   </div>
 
   <script type="text/javascript">
 
     var tableData;
-    function getParam(variable){
+    function getParam(variable) {
       var query = window.location.search.substring(1);
       var vars = query.split("&");
-      for (var i=0;i<vars.length;i++) {
+      for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split("=");
-        if(pair[0] == variable){return pair[1];}
+        if (pair[0] == variable) { return pair[1]; }
       }
-      return(false);
+      return (false);
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
 
       // CSV format: https://gist.githubusercontent.com/nealrs/510b6ab766d97b42f572/raw/92188f386410fe9ebdfdea381562a4ddff4a02b7/test.csv
 
       Papa.parse("data/data.csv", {
         download: true,
         header: true,
-        complete: function(results) {
+        complete: function (results) {
           tableData = results;
 
           // print raw data
@@ -122,21 +125,22 @@ You can also use your own favico or Hackathon logo/header.
 
           // list.js search init
           var listOptions = {
-            valueNames: [ 'number', 'name', 'prize', 'cat' ],
+            valueNames: ['number', 'name', 'prize', 'cat'],
             page: 1000000
           };
           var userList = new List('fullTable', listOptions);
 
           // grab filter url param and activate filter
           var filter = decodeURI(getParam("filter"));
-          if (filter != "false"){
+          if (filter != "false") {
             $("#filter").val(filter);
             userList.search(filter);
           };
-  	    }
+        }
       });
 
     });
   </script>
 </body>
+
 </html>
